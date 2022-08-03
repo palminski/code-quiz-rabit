@@ -10,34 +10,34 @@ const questions = [
     },
     {
         question : "select C",
-        answerA : "A",
-        answerB : "B",
-        answerC : "C",
-        answerD : "D",
+        answerA : "this is A",
+        answerB : "this is B",
+        answerC : "this is C",
+        answerD : "this is D",
         correctAnswer : "C"
     },
     {
         question : "select A",
-        answerA : "A",
-        answerB : "B",
-        answerC : "C",
-        answerD : "D",
+        answerA : "this is A",
+        answerB : "this is B",
+        answerC : "this is C",
+        answerD : "this is D",
         correctAnswer : "A"
     },
     {
         question : "select B",
-        answerA : "A",
-        answerB : "B",
-        answerC : "C",
-        answerD : "D",
+        answerA : "this is A",
+        answerB : "this is B",
+        answerC : "this is C",
+        answerD : "this is D",
         correctAnswer : "B"
     },
     {
         question : "select D",
-        answerA : "A",
-        answerB : "B",
-        answerC : "C",
-        answerD : "D",
+        answerA : "this is A",
+        answerB : "this is B",
+        answerC : "this is C",
+        answerD : "this is D",
         correctAnswer : "D"
     }
 ];
@@ -53,12 +53,13 @@ const defaultQuestion = {
 
 const $answerButtons = document.querySelector("#answer-buttons");
 const $startButton = document.querySelector("#start-button");
+const $timerBar = document.querySelector(".timer");
 
 let gamePlaying = false;
 let questionIndex = 0;
 let currentQuestion = 0;
 
-const timerMax = 10;
+const timerMax = 60;
 let timer = timerMax;
 let startTimer = null;
 
@@ -69,16 +70,21 @@ const startGame = function(){
         currentQuestion = questions[questionIndex];
         displayQuestion(currentQuestion);
         timer = timerMax;
+        $timerBar.style.width = ((timer/timerMax)*100) + "%";
         startTimer = setInterval(lowerTimer, 1000);
+    }
+    else {
+        endGame();
     }
 }
 
 const lowerTimer = function(){
     if (timer > 0){
         timer --;
-        console.log(timer);
+        $timerBar.style.width = ((timer/timerMax)*100) + "%";
     }
-    else {
+    if (timer === 0)
+    {
         endGame();
     }
     
@@ -107,7 +113,7 @@ $answerD.textContent = currentQuestion.answerD;
 }
 
 answerQuestion = function(selectedAnswer) {
-    console.log(questionIndex);
+    
     if (selectedAnswer === questions[questionIndex].correctAnswer) {
         console.log ("correct!");
         if (questionIndex < questions.length-1) {
@@ -123,6 +129,12 @@ answerQuestion = function(selectedAnswer) {
         console.log ("incorrect!");
         if (questionIndex < questions.length-1) {
             timer -= 30;
+            if (timer < 0) {
+                timer = 0;
+                $timerBar.style.width = "0%";
+                endGame();
+            }
+            $timerBar.style.width = ((timer/timerMax)*100) + "%";
             questionIndex ++;
             displayQuestion(questions[questionIndex]);    
         }
