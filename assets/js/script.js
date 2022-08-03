@@ -58,20 +58,37 @@ let gamePlaying = false;
 let questionIndex = 0;
 let currentQuestion = 0;
 
+const timerMax = 10;
+let timer = timerMax;
+let startTimer = null;
+
 const startGame = function(){
     if (!gamePlaying) {
         gamePlaying = true;
         questionIndex = 0;
         currentQuestion = questions[questionIndex];
         displayQuestion(currentQuestion);
+        timer = timerMax;
+        startTimer = setInterval(lowerTimer, 1000);
     }
+}
+
+const lowerTimer = function(){
+    if (timer > 0){
+        timer --;
+        console.log(timer);
+    }
+    else {
+        endGame();
+    }
+    
 }
 
 const endGame = function() {
     gamePlaying = false;
     displayQuestion(defaultQuestion);
     alert("You have Completed the quiz!");
-    
+    clearInterval(startTimer);
 
 }
 
@@ -105,6 +122,7 @@ answerQuestion = function(selectedAnswer) {
     else {
         console.log ("incorrect!");
         if (questionIndex < questions.length-1) {
+            timer -= 30;
             questionIndex ++;
             displayQuestion(questions[questionIndex]);    
         }
