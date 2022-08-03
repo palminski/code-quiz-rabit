@@ -54,6 +54,8 @@ const defaultQuestion = {
 const $answerButtons = document.querySelector("#answer-buttons");
 const $startButton = document.querySelector("#start-button");
 const $timerBar = document.querySelector(".timer");
+const $quiz = document.querySelector(".quiz");
+const $scores = document.querySelector(".high-scores");
 
 let gamePlaying = false;
 let questionIndex = 0;
@@ -163,6 +165,9 @@ const getClickedAnswer = function(event){
 }
 
 displayQuestion(defaultQuestion);
+$scores.style.display = "none";
+console.log($scores);
+
 
 $answerButtons.addEventListener("click",getClickedAnswer);
 $startButton.addEventListener("click",startGame);
