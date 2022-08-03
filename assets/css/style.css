@@ -1,0 +1,21 @@
+button {
+    transition-duration: 0.4s;
+}
+button:hover {
+    background-color: white;
+}
+
+#start-button {
+    width: 100%;
+    /* background-color: aquamarine; */
+}
+.answer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+.answer-button {
+    background-color: rgb(115, 158, 51);
+    border: solid green 1px;
+    padding: 20px 35px;
+    flex-basis: 50%;
+}
