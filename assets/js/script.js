@@ -1,4 +1,3 @@
-
 const questions = [
     {
         question : "select B",
@@ -56,14 +55,21 @@ const $startButton = document.querySelector("#start-button");
 const $timerBar = document.querySelector(".timer");
 const $quiz = document.querySelector(".quiz");
 const $scores = document.querySelector(".high-scores");
+const $returnButton = document.querySelector("#return-form")
 
 let gamePlaying = false;
 let questionIndex = 0;
 let currentQuestion = 0;
 
-const timerMax = 60;
+const timerMax = 10;
 let timer = timerMax;
 let startTimer = null;
+
+let highScore = 0;
+if (localStorage.getItem("highScore")) {
+    highScore = localStorage.getItem("highScore");
+    console.log ("highscore   " +highScore);
+}
 
 const startGame = function(){
     if (!gamePlaying) {
@@ -93,9 +99,33 @@ const lowerTimer = function(){
 }
 
 const endGame = function() {
+    let $scoreInfoContainer = document.querySelector(".score-info-container");
+    console.log("Score: "+timer);
+    let score = timer;
+    let $yourScore = document.createElement("h2");
+    let $highScore = document.createElement("h2");
+    $yourScore.textContent = "Your score was "+score+ " based on your remaining time";
+    $highScore.textContent = "The highscore is "+ highScore + " set by NULL";
+    $scoreInfoContainer.innerHTML = "";
+
+    $scoreInfoContainer.appendChild($yourScore);
+    $scoreInfoContainer.appendChild($highScore);
+
+    if (score > highScore)
+    {
+        highScore = score;
+        localStorage.setItem("highScore", highScore);
+    }
+
+
     gamePlaying = false;
     displayQuestion(defaultQuestion);
-    alert("You have Completed the quiz!");
+    
+    $scores.style.display = "block";
+    $quiz.style.display = "none"; 
+    
+    
+
     clearInterval(startTimer);
 
 }
@@ -137,8 +167,8 @@ answerQuestion = function(selectedAnswer) {
                 endGame();
             }
             $timerBar.style.width = ((timer/timerMax)*100) + "%";
-            questionIndex ++;
-            displayQuestion(questions[questionIndex]);    
+            // questionIndex ++;
+            // displayQuestion(questions[questionIndex]);    
         }
         else {
             endGame();
@@ -164,6 +194,15 @@ const getClickedAnswer = function(event){
     }
 }
 
+const returnToGame = function(event) {
+    event.preventDefault();
+    $scores.style.display = "none";
+    $quiz.style.display = "block";   
+    $timerBar.style.width = "100%"; 
+
+}
+
+
 displayQuestion(defaultQuestion);
 $scores.style.display = "none";
 console.log($scores);
@@ -171,3 +210,4 @@ console.log($scores);
 
 $answerButtons.addEventListener("click",getClickedAnswer);
 $startButton.addEventListener("click",startGame);
+$returnButton.addEventListener("submit",returnToGame);
