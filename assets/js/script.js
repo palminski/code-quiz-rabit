@@ -15,8 +15,41 @@ const questions = [
         answerC : "C",
         answerD : "D",
         correctAnswer : "C"
+    },
+    {
+        question : "select A",
+        answerA : "A",
+        answerB : "B",
+        answerC : "C",
+        answerD : "D",
+        correctAnswer : "A"
+    },
+    {
+        question : "select B",
+        answerA : "A",
+        answerB : "B",
+        answerC : "C",
+        answerD : "D",
+        correctAnswer : "B"
+    },
+    {
+        question : "select D",
+        answerA : "A",
+        answerB : "B",
+        answerC : "C",
+        answerD : "D",
+        correctAnswer : "D"
     }
 ];
+
+const defaultQuestion = {
+    question : "Click Start to Begin",
+    answerA : "-",
+    answerB : "-",
+    answerC : "-",
+    answerD : "-",
+    correctAnswer : "D"
+}
 
 const $answerButtons = document.querySelector("#answer-buttons");
 const $startButton = document.querySelector("#start-button");
@@ -26,9 +59,20 @@ let questionIndex = 0;
 let currentQuestion = 0;
 
 const startGame = function(){
-    gamePlaying = true;
-    currentQuestion = questions[questionIndex];
-    displayQuestion(currentQuestion);
+    if (!gamePlaying) {
+        gamePlaying = true;
+        questionIndex = 0;
+        currentQuestion = questions[questionIndex];
+        displayQuestion(currentQuestion);
+    }
+}
+
+const endGame = function() {
+    gamePlaying = false;
+    displayQuestion(defaultQuestion);
+    alert("You have Completed the quiz!");
+    
+
 }
 
 displayQuestion = function(currentQuestion){
@@ -49,16 +93,23 @@ answerQuestion = function(selectedAnswer) {
     console.log(questionIndex);
     if (selectedAnswer === questions[questionIndex].correctAnswer) {
         console.log ("correct!");
-        while (questionIndex < questions.length-1) {
+        if (questionIndex < questions.length-1) {
             questionIndex ++;
             displayQuestion(questions[questionIndex]);    
         } 
+        else
+        {
+            endGame();
+        }
     }
     else {
         console.log ("incorrect!");
-        while (questionIndex < questions.length-1) {
+        if (questionIndex < questions.length-1) {
             questionIndex ++;
             displayQuestion(questions[questionIndex]);    
+        }
+        else {
+            endGame();
         }
     }
 }
@@ -80,6 +131,8 @@ const getClickedAnswer = function(event){
         }
     }
 }
+
+displayQuestion(defaultQuestion);
 
 $answerButtons.addEventListener("click",getClickedAnswer);
 $startButton.addEventListener("click",startGame);

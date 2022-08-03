@@ -1,3 +1,11 @@
+header {
+    text-align: center;
+}
+#question {
+    text-align: center;
+}
+
+
 button {
     transition-duration: 0.4s;
 }
@@ -5,17 +13,23 @@ button:hover {
     background-color: white;
 }
 
-#start-button {
+.start-button {
+    font-size: 35px;
     width: 100%;
-    /* background-color: aquamarine; */
+    background-color: rgb(97, 202, 167);
+    border: solid rgb(75, 159, 238) 1px;
+    padding: 20px 35px;
 }
 .answer-buttons {
+    
     display: flex;
     flex-wrap: wrap;
 }
 .answer-button {
+    font-size: 20px;
     background-color: rgb(115, 158, 51);
     border: solid green 1px;
     padding: 20px 35px;
+    margin-bottom: 5px;
     flex-basis: 50%;
 }
