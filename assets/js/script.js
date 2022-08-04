@@ -1,42 +1,42 @@
 const questions = [
     {
-        question : "select B",
-        answerA : "this is A",
-        answerB : "this is B",
-        answerC : "this is C",
-        answerD : "this is D",
+        question : "What should you end all but the last cases in a switch case with?",
+        answerA : "return;",
+        answerB : "break;",
+        answerC : "a semi-colon",
+        answerD : "default:",
         correctAnswer : "B"
     },
     {
-        question : "select C",
-        answerA : "this is A",
-        answerB : "this is B",
-        answerC : "this is C",
-        answerD : "this is D",
-        correctAnswer : "C"
-    },
-    {
-        question : "select A",
-        answerA : "this is A",
-        answerB : "this is B",
-        answerC : "this is C",
-        answerD : "this is D",
+        question : "Which of these will set value to a random intiger from min to max?",
+        answerA : "value = Math.floor(Math.random()*(max - min +1)+min)",
+        answerB : "value = floor(Math.random()*(max - min +1)+min)",
+        answerC : "value = Math.floor(random()*(max - min)+min)",
+        answerD : "value = Math.floor(math.random()*(max - min +1))",
         correctAnswer : "A"
     },
     {
-        question : "select B",
-        answerA : "this is A",
-        answerB : "this is B",
-        answerC : "this is C",
-        answerD : "this is D",
+        question : "To make a new HTML element appear on the page you can use which of the following functions?",
+        answerA : ".addChild()",
+        answerB : ".pop()",
+        answerC : ".appendChild()",
+        answerD : ".push()",
+        correctAnswer : "C"
+    },
+    {
+        question : "if [0,1,2] === [0,1,2] was typed into the console, what would it return?",
+        answerA : "array",
+        answerB : "false",
+        answerC : "undefined",
+        answerD : "true",
         correctAnswer : "B"
     },
     {
-        question : "select D",
-        answerA : "this is A",
-        answerB : "this is B",
-        answerC : "this is C",
-        answerD : "this is D",
+        question : "if you wanted to turn the string 'intoanarray' into an array, which of the following could you use",
+        answerA : "JSON.arrayify()",
+        answerB : ".split(array)",
+        answerC : "JSON.arrayify('')",
+        answerD : ".split('')",
         correctAnswer : "D"
     }
 ];
@@ -62,7 +62,7 @@ let gamePlaying = false;
 let questionIndex = 0;
 let currentQuestion = 0;
 
-const timerMax = 30;
+const timerMax = 60;
 let timer = timerMax;
 const incorrectPenalty = 5;
 let playersScore = 0;
