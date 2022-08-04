@@ -193,25 +193,25 @@ $answerD.textContent = currentQuestion.answerD;
 
 // let answerToAppend  = 1;
 for (i=randomNumber(0,4); i < 4; i++) {
-
+    console.log("shuffling");
     switch (randomNumber(1,4)) {
         case 1:
             $answerButtons.appendChild($answerA);
-
+            console.log("A");
             break;
         case 2:
             $answerButtons.appendChild($answerB);
-
+            console.log("B");
             break;
             
         case 3:
             $answerButtons.appendChild($answerC);
-
+            console.log("C");
             break;
             
         case 4:
             $answerButtons.appendChild($answerD);
-
+            console.log("D");
             break
             
         default:
@@ -235,7 +235,7 @@ answerQuestion = function(selectedAnswer) {
     }
     else {
         console.log ("incorrect!");
-        if (questionIndex < questions.length-1) {
+        
             timer -= incorrectPenalty;
             if (timer < 0) {
                 timer = 0;
@@ -243,10 +243,7 @@ answerQuestion = function(selectedAnswer) {
                 endGame();
             }
             $timerBar.style.width = ((timer/timerMax)*100) + "%";   
-        }
-        else {
-            endGame();
-        }
+        
     }
 }
 
@@ -294,5 +291,3 @@ $startButton.addEventListener("click",startGame);
 
 $returnButton.addEventListener("click",returnToGame);
 $submitScoreForm.addEventListener("submit",addNewHighScore);
-//BUGS 
-//YOU CAN ANSWER LAST QUESTION WITH ANYTHING AND IT RETURNS AS IF ITS CORRECT
