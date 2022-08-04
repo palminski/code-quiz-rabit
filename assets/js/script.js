@@ -185,6 +185,9 @@ let $answerB = document.querySelector("#answer-b");
 let $answerC = document.querySelector("#answer-c");
 let $answerD = document.querySelector("#answer-d");
 
+
+
+
 $question.textContent = currentQuestion.question;
 $answerA.textContent = currentQuestion.answerA;
 $answerB.textContent = currentQuestion.answerB;
@@ -259,3 +262,5 @@ $startButton.addEventListener("click",startGame);
 
 $returnButton.addEventListener("click",returnToGame);
 $submitScoreForm.addEventListener("submit",addNewHighScore);
+//BUGS 
+//YOU CAN ANSWER LAST QUESTION WITH ANYTHING AND IT RETURNS AS IF ITS CORRECT
