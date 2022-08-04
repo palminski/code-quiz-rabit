@@ -122,7 +122,7 @@ const endGame = function() {
     let $yourScore = document.createElement("h2");
 
     if (playersScore > 0) {
-        $endMessage.textContent = "Congratulations! You have finished the quiz!";
+        $endMessage.textContent = "Congrats!";
     }
     else
     {

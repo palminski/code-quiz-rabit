@@ -41,9 +41,7 @@ button {
     transition-duration: 0.4s;
     margin: 25px 0px;
 }
-button:hover {
-    opacity: 0.8;
-}
+
 
 .start-button {
     font-size: 35px;
@@ -96,5 +94,11 @@ button:hover {
 @media (max-width: 800px) {
     .answer-button {
         flex-basis: 100%;
+    }
+}
+
+@media (hover: hover) {
+    button:hover {
+        opacity: 0.8;
     }
 }
