@@ -113,7 +113,7 @@ const lowerTimer = function(){
 
 const endGame = function() {
     let $scoreInfoContainer = document.querySelector(".score-info-container");
-    console.log("Score: "+timer);
+
     playersScore = timer;
     let $yourScore = document.createElement("h2");
 
@@ -185,14 +185,40 @@ let $answerB = document.querySelector("#answer-b");
 let $answerC = document.querySelector("#answer-c");
 let $answerD = document.querySelector("#answer-d");
 
-
-
-
 $question.textContent = currentQuestion.question;
 $answerA.textContent = currentQuestion.answerA;
 $answerB.textContent = currentQuestion.answerB;
 $answerC.textContent = currentQuestion.answerC;
 $answerD.textContent = currentQuestion.answerD;
+
+// let answerToAppend  = 1;
+for (i=randomNumber(0,4); i < 4; i++) {
+
+    switch (randomNumber(1,4)) {
+        case 1:
+            $answerButtons.appendChild($answerA);
+
+            break;
+        case 2:
+            $answerButtons.appendChild($answerB);
+
+            break;
+            
+        case 3:
+            $answerButtons.appendChild($answerC);
+
+            break;
+            
+        case 4:
+            $answerButtons.appendChild($answerD);
+
+            break
+            
+        default:
+    }
+    
+}
+
 }
 
 answerQuestion = function(selectedAnswer) {
@@ -242,6 +268,12 @@ const getClickedAnswer = function(event){
     }
 }
 
+let randomNumber = function (min, max) {
+    let value = Math.floor(Math.random()*(max - min +1)+min);
+    
+    return value;
+}
+
 const returnToGame = function(event) {
 
     $scores.style.display = "none";
@@ -254,7 +286,7 @@ const returnToGame = function(event) {
 displayQuestion(defaultQuestion);
 $scores.style.display = "none";
 $submitScoreForm.style.display = "none";
-console.log($scores);
+
 
 
 $answerButtons.addEventListener("click",getClickedAnswer);
