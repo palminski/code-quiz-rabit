@@ -34,7 +34,7 @@ button:hover {
     flex-basis: 50%;
 }
 .timer {
-    background-color: blue;
+    background-color: rgb(203, 203, 255);
     width: 100%;
     margin-top: 10px;
     height: 25px;
