@@ -115,10 +115,19 @@ const lowerTimer = function(){
 
 const endGame = function() {
     let $scoreInfoContainer = document.querySelector(".score-info-container");
+    let $endMessage = document.querySelector(".end-message");
+
 
     playersScore = timer;
     let $yourScore = document.createElement("h2");
 
+    if (playersScore > 0) {
+        $endMessage.textContent = "Congratulations! You have finished the quiz!";
+    }
+    else
+    {
+        $endMessage.textContent = "Game Over!";
+    }
     $yourScore.textContent = "Your score was "+playersScore;
     $scoreInfoContainer.innerHTML = "";
     $scoreInfoContainer.appendChild($yourScore);
