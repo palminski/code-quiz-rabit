@@ -85,6 +85,8 @@ if (localStorage.getItem("highScores")) {
 
 const startGame = function(){
     if (!gamePlaying) {
+        $startButton.textContent = "End Game";
+        $startButton.style.backgroundColor = "#F09A9A";
         gamePlaying = true;
         questionIndex = 0;
         currentQuestion = questions[questionIndex];
@@ -124,6 +126,8 @@ const endGame = function() {
     highScoreTable();
 
     gamePlaying = false;
+    $startButton.textContent = "Start Game";
+        $startButton.style.backgroundColor = "";
     displayQuestion(defaultQuestion);
 
     $scores.style.display = "block";
@@ -184,6 +188,11 @@ let $answerA = document.querySelector("#answer-a");
 let $answerB = document.querySelector("#answer-b");
 let $answerC = document.querySelector("#answer-c");
 let $answerD = document.querySelector("#answer-d");
+let answerButtons = [$answerA,$answerB,$answerC,$answerD];
+for (i=0;i<answerButtons.length;i++){
+    answerButtons[i].style.backgroundColor = "";
+
+}
 
 $question.textContent = currentQuestion.question;
 $answerA.textContent = currentQuestion.answerA;
@@ -193,26 +202,20 @@ $answerD.textContent = currentQuestion.answerD;
 
 // let answerToAppend  = 1;
 for (i=randomNumber(0,4); i < 4; i++) {
-    console.log("shuffling");
+
     switch (randomNumber(1,4)) {
         case 1:
             $answerButtons.appendChild($answerA);
-            console.log("A");
             break;
         case 2:
             $answerButtons.appendChild($answerB);
-            console.log("B");
             break;
-            
         case 3:
             $answerButtons.appendChild($answerC);
-            console.log("C");
             break;
-            
         case 4:
             $answerButtons.appendChild($answerD);
-            console.log("D");
-            break
+            break;
             
         default:
     }
@@ -221,9 +224,12 @@ for (i=randomNumber(0,4); i < 4; i++) {
 
 }
 
-answerQuestion = function(selectedAnswer) {
+answerQuestion = function(selectedAnswer,clickedId) {
+    
+    let $clickedHTMLElement = document.querySelector(clickedId);
+
     if (selectedAnswer === questions[questionIndex].correctAnswer) {
-        console.log ("correct!");
+        
         if (questionIndex < questions.length-1) {
             questionIndex ++;
             displayQuestion(questions[questionIndex]);    
@@ -234,7 +240,8 @@ answerQuestion = function(selectedAnswer) {
         }
     }
     else {
-        console.log ("incorrect!");
+        $clickedHTMLElement.style.backgroundColor = "#F09A9A";
+        
         
             timer -= incorrectPenalty;
             if (timer < 0) {
@@ -251,16 +258,16 @@ const getClickedAnswer = function(event){
     let $target = event.target;
     if (gamePlaying) {
         if ($target.matches("#answer-a")){
-            answerQuestion("A");
+            answerQuestion("A","#answer-a");
         }
         if ($target.matches("#answer-b")){
-            answerQuestion("B");
+            answerQuestion("B","#answer-b");
         }
         if ($target.matches("#answer-c")){
-            answerQuestion("C");
+            answerQuestion("C","#answer-c");
         }
         if ($target.matches("#answer-d")){
-            answerQuestion("D");
+            answerQuestion("D","#answer-d");
         }
     }
 }
